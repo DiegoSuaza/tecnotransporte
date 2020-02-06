@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\companies;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use App\User;
 
 
 class CompaniesController extends Controller
@@ -17,7 +18,7 @@ class CompaniesController extends Controller
     public function index()
     {
         /*paginación basica laravel*/
-        /*$companies = companies::paginate(10);*/
+        /*$companies = companies::paginate(10);*/                  
         $companies = companies::all();
         return view('company.list', compact('companies'));
     }
@@ -57,6 +58,10 @@ class CompaniesController extends Controller
         $company->logo = $logo;
         $company->save();
 
+        /*declaro el admin para envio de correo*/
+        $admin = User::where('id', '=', 1)->pluck('email')
+        Mail::to($admin)->send(new CompanyCreated($company));
+        
         return redirect()->route('compania')->with('flash', 'Creado correctamente');
 
     }
