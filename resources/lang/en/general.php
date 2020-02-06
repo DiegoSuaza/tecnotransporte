@@ -1,0 +1,31 @@
+<?php
+
+return [
+    'login' => 'Login',
+    'logout' => 'Logout',
+    'home' => 'Home',
+    'company' => 'Companies',
+    'employee' => 'Employees',
+    'gest' => 'Managment',
+    'list' => 'See listing',
+    'edit' => 'Edit',
+    'delete' => 'Delet',
+    'list_company' => 'List of companies',
+    'new_company' => 'New company',
+    'edit_company' => 'Edit company',
+    'name' => 'Name',
+    'action' => 'Actions',
+    'search' => 'Search',
+    'show' => 'Show',
+    'regis' => 'items',
+    'of' => 'of',
+    'next' => 'Next',
+    'prev' => 'Previous',
+    'save' => 'Save',
+    'list_employee' => 'List of employees',
+    'new_employee' => 'New employee',
+    'edit_employee' => 'Edit employee',
+    'phone' => 'Phone',
+    'last_name' => 'Last name',
+
+];

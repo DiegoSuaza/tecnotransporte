@@ -5,16 +5,16 @@
     <div class="row justify-content-center">
         <div class="col-md-10 col-12">
             <div class="card">
-                <h1 class="card-header text-center">Listado de compañias</h1>
+                <h1 class="card-header text-center">{!! trans('general.list_company') !!}</h1>
                 <div class="card-body table-responsive">
-                    <a href="{{route('crear-compania')}}" class="btn btn-success" style="margin-bottom: 15px">Nueva compañia</a>
+                    <a href="{{route('crear-compania')}}" class="btn btn-success" style="margin-bottom: 15px">{!! trans('general.new_company') !!}</a>
                     <table id="example1" class="table table-bordered table-striped table-hover table-sm" style="width: 100%">
                         <thead>
                             <tr>
                                 <th>Logo</th>
-                                <th>Nombre</th>                        
+                                <th>{!! trans('general.name') !!}</th>                        
                                 <th>Email</th>
-                                <th>Acciones</th>
+                                <th>{!! trans('general.action') !!}</th>
                             </tr>
                         </thead>
                         <tbody> 
@@ -24,8 +24,8 @@
                                 <td>{{$company->name}}</td>
                                 <td>{{$company->email}}</td>
                                 <td style="text-align: center"> 
-                                    <a href="{{route('editar-compania', $company->id)}}" title="Editar" class="btn btn-info" style="color: white">Editar</a> 
-                                    <a href="{{route('eliminar-compania', $company->id)}}" title="Eliminar" class="btn btn-danger">Eliminar</a> 
+                                    <a href="{{route('editar-compania', $company->id)}}" title="{!! trans('general.edit') !!}" class="btn btn-info" style="color: white">{!! trans('general.edit') !!}</a> 
+                                    <a href="{{route('eliminar-compania', $company->id)}}" title="{!! trans('general.delete') !!}" class="btn btn-danger">{!! trans('general.delete') !!}</a> 
                                 </td>
                             </tr>
                             @endforeach                                          

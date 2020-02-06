@@ -34,3 +34,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 	Route::get('/editar-empleado/{id}', 'EmployeesController@edit')->name('editar-empleado');
 	Route::put('/update-empleado/{id}', 'EmployeesController@update')->name('update-empleado');
 	Route::get('/eliminar-empleado/{id}', 'EmployeesController@destroy')->name('eliminar-empleado');
+
+// cambio de idioma
+Route::get('lang/{lang}', 'LanguageController@swap')->name('lang.swap');

@@ -5,17 +5,17 @@
     <div class="row justify-content-center">
         <div class="col-md-10 col-12">
             <div class="card">
-                <h1 class="card-header text-center">Editar empleado</h1>
+                <h1 class="card-header text-center">{!! trans('general.edit_employee') !!}</h1>
                 <div class="card-body ">
                     <form method="POST" action="{{route('update-empleado', $employee->id)}}" class="row">
                         @csrf
                         {{method_field('PUT')}}
                       <div class="form-group col-12 col-md-6">
-                        <h3>Nombre</h3>
+                        <h3>{!! trans('general.name') !!}</h3>
                         <input type="text" class="form-control" name="name" value="{{$employee->name}}">
                       </div>
                       <div class="form-group col-12 col-md-6">
-                        <h3>Apellido</h3>
+                        <h3>{!! trans('general.last_name') !!}</h3>
                         <input type="text" class="form-control" name="last_name" value="{{$employee->last_name}}">
                       </div>
                       <div class="form-group col-12 col-md-6">
@@ -23,11 +23,11 @@
                         <input type="email" class="form-control" name="email" value="{{$employee->email}}">
                       </div>
                       <div class="form-group col-12 col-md-6">
-                        <h3 >Teléfono</h3>
+                        <h3 >{!! trans('general.phone') !!}</h3>
                         <input type="number" class="form-control" name="phone" min="999999" max="9999999999" value="{{$employee->phone}}">
                       </div>  
                       <div class="form-group col-12 col-md-6">
-                        <h3 >Compañia</h3>
+                        <h3 >{!! trans('general.company') !!}</h3>
                         <select class="form-control" name="company">
                           <option selected disabled>Seleccione la compañia</option>                          
                           @foreach($companies as $company)
@@ -36,7 +36,7 @@
                         </select>
                       </div>   
                       <div class="col-12">
-                        <button class="col-12 col-md-6 col-lg-2 mx-auto btn btn-primary">Actualizar</button>
+                        <button class="col-12 col-md-6 col-lg-2 mx-auto btn btn-primary">{!! trans('general.save') !!}</button>
                                       
                       </div>                
                     </form>

@@ -37,10 +37,10 @@
                         @guest
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('compania')}}">Compañias <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{route('compania')}}">{!! trans('general.company') !!}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('empleado')}}">Empleados</a>
+                                <a class="nav-link" href="{{route('empleado')}}">{!! trans('general.employee') !!}</a>
                             </li>
                         @endguest                      
                     </ul>
@@ -48,9 +48,21 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        <!--Comprobamos si el status esta a true y existe más de un lenguaje-->
+                        @if (config('locale.status') && count(config('locale.languages')) > 1)
+                            <div class="top-right links">
+                                @foreach (array_keys(config('locale.languages')) as $lang)
+                                    @if ($lang != App::getLocale())
+                                        <a href="{!! route('lang.swap', $lang) !!}">
+                                                {!! $lang !!}
+                                        </a>
+                                    @endif
+                                @endforeach
+                            </div>
+                        @endif
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{!! trans('general.login') !!}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
@@ -67,7 +79,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                       {!! trans('general.logout') !!}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -127,9 +139,8 @@
 
 <!-- jQuery -->
 <script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
-<!-- AdminlTE App -->
+<script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('adminlte/dist/js/adminlte.min.js')}}"></script>
-<!-- REQUIRED JS SCRIPTS -->
 <script src="{{asset('adminlte/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('adminlte/plugins/datatables/dataTables.buttons.min.js')}}">  </script>
 <script src="{{asset('adminlte/plugins/datatables/buttons.flash.min.js')}}">  </script>
@@ -138,7 +149,7 @@
 <script src="{{asset('adminlte/plugins/datatables/vfs_fonts.js')}}">  </script>
 <script src="{{asset('adminlte/plugins/datatables/buttons.html5.min.js')}}">  </script>
 <script src="{{asset('adminlte/plugins/datatables/buttons.print.min.js')}}">  </script>
-
+<script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script> 
 <script type="text/javascript">
     $(document).ready(function() {
         $('#example1').DataTable({
@@ -152,22 +163,22 @@
           language:
             {
              "sProcessing":     "Procesando...",
-              "sLengthMenu":     "Mostrar _MENU_ registros",
+              "sLengthMenu":     "{!! trans('general.show') !!} _MENU_ {!! trans('general.regis') !!}",
               "sZeroRecords":    "No se encontraron resultados",
               "sEmptyTable":     "Ning&uacute;n dato disponible en esta tabla",
-              "sInfo":           "Mostrando _START_ de _END_ registros",
-              "sInfoEmpty":      "Mostrando 0 de 0 registros",
-              "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+              "sInfo":           "{!! trans('general.show') !!} _START_ {!! trans('general.of') !!} _END_ {!! trans('general.regis') !!}",
+              "sInfoEmpty":      "{!! trans('general.show') !!} 0 {!! trans('general.of') !!} 0 {!! trans('general.regis') !!}",
+              "sInfoFiltered":   "(filtrado de un total de _MAX_ {!! trans('general.regis') !!})",
               "sInfoPostFix":    "",
-              "sSearch":         "Buscar:",
+              "sSearch":         "{!! trans('general.search') !!}:",
               "sUrl":            "",
               "sInfoThousands":  ",",
               "sLoadingRecords": "Cargando...",
               "oPaginate": {
                   "sFirst":    "Primero",
                   "sLast":     "�0�3ltimo",
-                  "sNext":     "Siguiente",
-                  "sPrevious": "Anterior"
+                  "sNext":     "{!! trans('general.next') !!}",
+                  "sPrevious": "{!! trans('general.prev') !!}"
               },
               "oAria": {
                   "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",

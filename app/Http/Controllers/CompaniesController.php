@@ -59,7 +59,7 @@ class CompaniesController extends Controller
         $company->save();
 
         /*declaro el admin para envio de correo*/
-        $admin = User::where('id', '=', 1)->pluck('email')
+        $admin = User::where('id', '=', 1)->pluck('email');
         Mail::to($admin)->send(new CompanyCreated($company));
         
         return redirect()->route('compania')->with('flash', 'Creado correctamente');

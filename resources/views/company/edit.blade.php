@@ -5,13 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-md-10 col-12">
             <div class="card">
-                <h1 class="card-header text-center">Editar compañia</h1>
+                <h1 class="card-header text-center">{!! trans('general.edit_company') !!}</h1>
                 <div class="card-body ">
                     <form method="POST" action="{{route('update-compania', $company->id)}}" class="row" enctype="multipart/form-data">
                       @csrf
                       {{method_field('PUT')}}
                       <div class="form-group col-12 col-md-6">
-                        <h3>Nombre</h3>
+                        <h3>{!! trans('general.name') !!}</h3>
                         <input type="text" class="form-control" name="name" value="{{$company->name}}">
                       </div>
                       <div class="form-group col-12 col-md-6">
@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                         </div>
-                      <button class="col-12 col-md-6 col-lg-2 mx-auto btn btn-primary">Actualizar</button>
+                      <button class="col-12 col-md-6 col-lg-2 mx-auto btn btn-primary">{!! trans('general.save') !!}</button>
                     </form>
                 </div>                
             </div>

@@ -67,10 +67,22 @@
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
+                    <!--Comprobamos si el status esta a true y existe más de un lenguaje-->
+                    @if (config('locale.status') && count(config('locale.languages')) > 1)
+                        
+                            @foreach (array_keys(config('locale.languages')) as $lang)
+                                @if ($lang != App::getLocale())
+                                    <a href="{!! route('lang.swap', $lang) !!}">
+                                            {!! $lang !!}
+                                    </a>
+                                @endif
+                            @endforeach
+                        
+                    @endif
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">{!! trans('general.home') !!}</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">{!! trans('general.login') !!}</a>
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
