@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables/jquery.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.min.css')}}">
 </head>
 <body>
     <div id="app">
@@ -33,7 +35,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @guest
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('compania')}}">Compañias <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('empleado')}}">Empleados</a>
+                            </li>
+                        @endguest                      
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -73,8 +83,46 @@
         </nav>
 
         <main class="py-4">
+            @if (asset($errors)&&count($errors) >0)
+                <div class="alert alert-danger" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  @foreach ($errors->all() as $error)
+                    <li> <strong> {!! $error !!}</strong> </li>
+                  @endforeach
+              
+                </div>
+              @endif
+            <!--Contenido de la aplicaci��n-->
+            @if(session()->has('flash'))
+              <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>{{ session('flash') }}</div>
+            @endif
+            @if (session()->has('errores'))
+              <div class="alert alert-danger" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+        
+                <strong>{!!session()->get('errores')!!}</strong>
+              </div>
+            @endif
+            @if (session()->has('success'))
+              <div class="alert alert-success" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+        
+                <strong>{!!session()->get('success')!!}</strong>
+              </div>
+            @endif
             @yield('content')
-        </main>
+        </main>        
     </div>
+
+        
+
 </body>
 </html>
