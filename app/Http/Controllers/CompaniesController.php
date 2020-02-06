@@ -17,8 +17,8 @@ class CompaniesController extends Controller
     public function index()
     {
         /*paginación basica laravel*/
-        $companies = companies::paginate(10);
-        // $companies = companies::all();
+        /*$companies = companies::paginate(10);*/
+        $companies = companies::all();
         return view('company.list', compact('companies'));
     }
 

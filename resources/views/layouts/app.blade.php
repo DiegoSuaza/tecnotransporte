@@ -9,20 +9,19 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.css') }}">
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables/jquery.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.min.css')}}">
+
 </head>
 <body>
-    <div id="app">
+    <div>
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -118,11 +117,65 @@
                 <strong>{!!session()->get('success')!!}</strong>
               </div>
             @endif
-            @yield('content')
         </main>        
+            @yield('content')
     </div>
 
         
 
 </body>
+
+<!-- jQuery -->
+<script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
+<!-- AdminlTE App -->
+<script src="{{ asset('adminlte/dist/js/adminlte.min.js')}}"></script>
+<!-- REQUIRED JS SCRIPTS -->
+<script src="{{asset('adminlte/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('adminlte/plugins/datatables/dataTables.buttons.min.js')}}">  </script>
+<script src="{{asset('adminlte/plugins/datatables/buttons.flash.min.js')}}">  </script>
+<script src="{{asset('adminlte/plugins/datatables/jszip.min.js')}}">  </script>
+<script src="{{asset('adminlte/plugins/datatables/pdfmake.min.js')}}">  </script>
+<script src="{{asset('adminlte/plugins/datatables/vfs_fonts.js')}}">  </script>
+<script src="{{asset('adminlte/plugins/datatables/buttons.html5.min.js')}}">  </script>
+<script src="{{asset('adminlte/plugins/datatables/buttons.print.min.js')}}">  </script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#example1').DataTable({
+            dom: "<'row'<'col-lg-4 col-md-12'B><'col-lg-4 col-md-12'l><'col-lg-4 col-md-12'f>><t><ip>",
+          buttons: [
+            { extend: 'csv', className: 'btn btn-primary' }, 
+            { extend: 'excel' , text:'EXCEL', className: 'btn btn-success' },
+            { extend: 'pdf', className: 'btn btn-danger' },
+            { extend:'csv', text:'TXT' ,extension: '.txt', className: 'btn btn-info'}
+          ],
+          language:
+            {
+             "sProcessing":     "Procesando...",
+              "sLengthMenu":     "Mostrar _MENU_ registros",
+              "sZeroRecords":    "No se encontraron resultados",
+              "sEmptyTable":     "Ning&uacute;n dato disponible en esta tabla",
+              "sInfo":           "Mostrando _START_ de _END_ registros",
+              "sInfoEmpty":      "Mostrando 0 de 0 registros",
+              "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+              "sInfoPostFix":    "",
+              "sSearch":         "Buscar:",
+              "sUrl":            "",
+              "sInfoThousands":  ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                  "sFirst":    "Primero",
+                  "sLast":     "�0�3ltimo",
+                  "sNext":     "Siguiente",
+                  "sPrevious": "Anterior"
+              },
+              "oAria": {
+                  "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              }
+          }
+        } );
+
+    });
+</script>
 </html>
