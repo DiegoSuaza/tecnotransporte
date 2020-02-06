@@ -33,3 +33,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 	Route::post('/registrar-empleado', 'EmployeesController@store')->name('registrar-empleado');
 	Route::get('/editar-empleado/{id}', 'EmployeesController@edit')->name('editar-empleado');
 	Route::put('/update-empleado/{id}', 'EmployeesController@update')->name('update-empleado');
+	Route::get('/eliminar-empleado/{id}', 'EmployeesController@destroy')->name('eliminar-empleado');

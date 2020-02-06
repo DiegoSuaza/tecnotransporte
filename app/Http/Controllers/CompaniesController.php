@@ -16,9 +16,9 @@ class CompaniesController extends Controller
      */
     public function index()
     {
-        /*paginación basica laravel
-        $companies = companies::paginate(10);*/
-        $companies = companies::all();
+        /*paginación basica laravel*/
+        $companies = companies::paginate(10);
+        // $companies = companies::all();
         return view('company.list', compact('companies'));
     }
 
@@ -40,13 +40,12 @@ class CompaniesController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
         $validatedData = $request->validate([
             'name'=> 'required',
             'email'=> 'required|unique:companies|email',
             'logo'=> 'required|mimes:png|dimensions:min_width=150,min_height=150'
         ]);
-
+        /*muevo el archivo al storage y registro el nombre*/
         $file =  Input::file('logo')->getClientOriginalName();
         $ext = pathinfo($file, PATHINFO_EXTENSION);
         $logo = 'logo_'.uniqid().'_compania.'.$ext;
@@ -96,7 +95,7 @@ class CompaniesController extends Controller
         if($request->hasFile('logo')){
             /*elimino el archivo anterior*/
             \Storage::disk('public')->delete($company->logo);
-            /*cambio nombre de archivo y lo muevo al storage publi*/
+            /*cambio nombre de archivo y lo muevo al storage public*/
             $file =  Input::file('logo')->getClientOriginalName();
             $ext = pathinfo($file, PATHINFO_EXTENSION);
             $logo = 'logo_'.uniqid().'_compania.'.$ext;
